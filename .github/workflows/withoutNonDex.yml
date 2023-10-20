@@ -7,8 +7,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Compile with Maven
-      run: |
-        pwd
-        mvn clean install -DskipTests -pl modules/sql-engine -am
+      run: mvn clean install -DskipTests -pl "modules/sql-engine" -am
     - name: Run test without Nondex tool
       run: mvn -pl emodules/sql-engine test -Dtest=org.apache.ignite.internal.sql.engine.exec.MockedStructuresTest#testCreateTable
