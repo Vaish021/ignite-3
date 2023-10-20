@@ -1,0 +1,12 @@
+name: Testing unit_test without Nondex tool.
+run-name: Testing unit_test without Nondex tool.
+on: [push]
+jobs:
+  Testing-without-Nondex:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Compile with Maven
+      run: mvn clean install -DskipTests -pl extensions-core/parquet-extensions -am
+    - name: Run test without Nondex tool
+      run: mvn -pl extensions-core/parquet-extensions test -Dtest=org.apache.druid.data.input.parquet.CompatParquetReaderTest#testParquetThriftCompat
